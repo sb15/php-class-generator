@@ -2,6 +2,8 @@
 
 namespace Sb\PhpClassGenerator;
 
+use Sb\Utils as SbUtils;
+
 class AbstractClassField
 {
 
@@ -22,12 +24,12 @@ class AbstractClassField
 
     public function getSetterName()
     {
-        return "set" . $this->name;
+        return "set" . SbUtils::wordUnderscoreToCamelCase($this->name);
     }
 
     public function getGetterName()
     {
-        return "get" . $this->name;
+        return "get" . SbUtils::wordUnderscoreToCamelCase($this->name);
     }
 
     public function getName()
