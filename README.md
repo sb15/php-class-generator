@@ -1,4 +1,4 @@
 php-class-generator
 ===================
 
-Php class generator
+Php class generator 
