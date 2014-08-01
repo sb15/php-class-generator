@@ -105,7 +105,7 @@ class AbstractClass
                 if ($use['as']) {
                     $content .= " as " . $use['as'];
                 }
-                $content .= ";";
+                $content .= ";\n";
             }
             $content .= "\n\n";
         }
