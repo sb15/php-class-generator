@@ -2,6 +2,8 @@
 
 namespace Sb\PhpClassGenerator;
 
+use Sb\Utils as SbUtils;
+
 class AbstractClass
 {
     private $name;
@@ -79,14 +81,14 @@ class AbstractClass
             $fieldName = $field->getName();
             $setFieldMethod = new AbstractClassMethod($field->getSetterName());
 
-            $param = new AbstractMethodParam($field->getName());
+            $param = new AbstractMethodParam(SbUtils::wordUnderscoreToCamelCaseFirstLower($field->getName()));
             $setFieldMethod->addParam($param);
-            $setFieldMethod->addContentLine(AbstractClass::tab(2) . '$this->' . $fieldName . ' = $' . $fieldName . ';');
+            $setFieldMethod->addContentLine(AbstractClass::tab(2) . '$this->' . $fieldName . ' = $' . SbUtils::wordUnderscoreToCamelCaseFirstLower($fieldName) . ';');
 
             $this->addMethod($setFieldMethod);
 
             $getFieldMethod = new AbstractClassMethod($field->getGetterName());
-            $getFieldMethod->addContentLine(AbstractClass::tab(2) . "return \${$fieldName};");
+            $getFieldMethod->addContentLine(AbstractClass::tab(2) . "return \$this->{$fieldName};");
             $this->addMethod($getFieldMethod);
         }
     }
