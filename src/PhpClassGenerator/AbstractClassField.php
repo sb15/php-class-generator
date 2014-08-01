@@ -62,14 +62,14 @@ class AbstractClassField
 
                 $defaults = $this->default;
                 foreach ($defaults as $key => $default) {
-                    $defaults[$key] = is_string($default) ? '"' . $default . '"' : $default;
+                    $defaults[$key] = $default;
                 }
 
                 $content .= ' = array(' . "\n" . AbstractClass::tab(2);
                 $content .= implode(",\n" . AbstractClass::tab(2), $defaults);
                 $content .= "\n" .  AbstractClass::tab() . ")";
             } else {
-                $content .= ' = ' . (is_string($this->default) ? '"' . $this->default . '"' : $this->default);
+                $content .= ' = ' . $this->default;
             }
         }
 

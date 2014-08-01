@@ -9,6 +9,7 @@ class AbstractClass
     private $extend;
     private $implements = array();
     private $isAbstract;
+    private $use = array();
 
     /**
      * @var AbstractClassField[]
@@ -59,6 +60,14 @@ class AbstractClass
 
     }
 
+    public function addUse($use, $as = '')
+    {
+        $this->use[] = array(
+            'use' => $use,
+            'as' => $as
+        );
+    }
+
     public function setAbstract()
     {
         $this->isAbstract = true;
@@ -88,6 +97,17 @@ class AbstractClass
 
         if ($this->namespace) {
             $content .= "namespace " . $this->namespace . ";\n\n";
+        }
+
+        if ($this->use) {
+            foreach  ($this->use as $use) {
+                $content .= "use " . $use['use'];
+                if ($use['as']) {
+                    $content .= " as " . $use['as'];
+                }
+                $content .= ";";
+            }
+            $content .= "\n\n";
         }
 
         if ($this->isAbstract) {
