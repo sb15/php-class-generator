@@ -83,12 +83,12 @@ class AbstractClass
 
             $param = new AbstractMethodParam(SbUtils::wordUnderscoreToCamelCaseFirstLower($field->getName()));
             $setFieldMethod->addParam($param);
-            $setFieldMethod->addContentLine(AbstractClass::tab(2) . '$this->' . $fieldName . ' = $' . SbUtils::wordUnderscoreToCamelCaseFirstLower($fieldName) . ';');
+            $setFieldMethod->addContentLine('$this->' . $fieldName . ' = $' . SbUtils::wordUnderscoreToCamelCaseFirstLower($fieldName) . ';');
 
             $this->addMethod($setFieldMethod);
 
             $getFieldMethod = new AbstractClassMethod($field->getGetterName());
-            $getFieldMethod->addContentLine(AbstractClass::tab(2) . "return \$this->{$fieldName};");
+            $getFieldMethod->addContentLine("return \$this->{$fieldName};");
             $this->addMethod($getFieldMethod);
         }
     }
