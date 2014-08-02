@@ -42,7 +42,7 @@ class AbstractClassMethod
 
     public function addContentLine($line)
     {
-        $this->content .= $line . "\n";
+        $this->content .= AbstractClass::tab(2) . $line . "\n";
     }
 
     public function getStatic()
@@ -54,8 +54,8 @@ class AbstractClassMethod
     }
 
     /**
-     * @param int $return
-     * @return int
+     * @param string $return
+     * @return string
      */
     public function setReturn($return)
     {
