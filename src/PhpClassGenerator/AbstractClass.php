@@ -12,6 +12,7 @@ class AbstractClass
     private $implements = array();
     private $isAbstract;
     private $use = array();
+    private $docBlocks = [];
 
     /**
      * @var AbstractClassField[]
@@ -30,6 +31,11 @@ class AbstractClass
     public function addField(AbstractClassField $field)
     {
         $this->fields[] = $field;
+    }
+
+    public function addDocBlock($block)
+    {
+        $this->docBlocks[] = $block;
     }
 
     public function __construct($name)
@@ -109,7 +115,15 @@ class AbstractClass
                 }
                 $content .= ";\n";
             }
-            $content .= "\n\n";
+            $content .= "\n";
+        }
+
+        if ($this->docBlocks) {
+            $content .= "/**\n";
+            foreach ($this->docBlocks as $docBlock) {
+                $content .= " * {$docBlock}\n";
+            }
+            $content .= " */\n";
         }
 
         if ($this->isAbstract) {
