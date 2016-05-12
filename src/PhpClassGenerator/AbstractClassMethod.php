@@ -45,6 +45,11 @@ class AbstractClassMethod
         $this->content .= AbstractClass::tab(2) . $line . "\n";
     }
 
+    public function setStatic()
+    {
+        $this->isStatic = true;
+    }
+
     public function getStatic()
     {
         if ($this->isStatic) {
