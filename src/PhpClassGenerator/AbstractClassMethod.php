@@ -53,7 +53,7 @@ class AbstractClassMethod
     public function getStatic()
     {
         if ($this->isStatic) {
-            return " static";
+            return " static ";
         }
         return " ";
     }
